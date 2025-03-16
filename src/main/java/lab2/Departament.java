@@ -8,14 +8,21 @@ public class Departament {
     //private static Departament instance = null;
     final String numeDepartament;
     private int numarAngajati;
-    private List<Angajat> membri ;// Statica? - toate departamentele au eceasi lista de angajati?
+    private List<Angajat> membri = new ArrayList<>();// Statica? - toate departamentele au eceasi lista de angajati?
 
-
+    public Departament(String numeDepartament, int  numarAngajati) {
+        this.numeDepartament = numeDepartament;
+        this.numarAngajati = numarAngajati;
+    }
     public Departament(String numeDepartament, int  numarAngajati,  List<Angajat> membri) {
+        this(numeDepartament,numarAngajati);
+        this.membri = membri;
+    }
+    /*public Departament(String numeDepartament, int  numarAngajati,  List<Angajat> membri) {
         this.numeDepartament = numeDepartament;
         this.numarAngajati = numarAngajati;
         this.membri = (membri != null) ? membri : new ArrayList<>();
-    }
+    }*/
 
     /*public static Departament getInstance(String numeDepartament, int  numarAngajati,  List<Angajat> membri) {
         if (instance == null) {

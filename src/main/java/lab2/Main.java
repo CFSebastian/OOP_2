@@ -7,8 +7,10 @@ public class Main {
         ManagementService Manager1 = ManagementService.getInstance();
 
         List<Departament> departamente =  new ArrayList<>();
-        departamente.add(new Departament("HR",2,null));
-        departamente.add(new Departament("Relatii Clienti",2,null));
+        /*departamente.add(new Departament("HR",2,null));
+        departamente.add(new Departament("Relatii Clienti",2,null));*/
+        departamente.add(new Departament("HR",2));
+        departamente.add(new Departament("Relatii Clienti",2));
         Angajat[]  angajati = new Angajat[]{
                 new Angajat("Eduard","Mihai",2022,3000,departamente.get(0)),
                 new Angajat("Sebi","Colt",2025,5000,departamente.get(0)),
