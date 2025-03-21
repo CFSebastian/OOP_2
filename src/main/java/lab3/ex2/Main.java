@@ -7,6 +7,7 @@ public class Main {
                 new Triangle("Blue",10),
                 new Square("Yellow",16)
         };
+        Shape.countShapesInArray(shapes);
+
     }
-    Shape.countShapesInArray(shapes);
 }
