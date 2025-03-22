@@ -7,7 +7,14 @@ public class Main {
                 new Triangle("Blue",10),
                 new Square("Yellow",16)
         };
+
         Shape.countShapesInArray(shapes);
+
+        Shape.bigestShape(shapes);
+
+        System.out.print(Shape.searchColor(shapes,"Red") + "\n");
+
+        System.out.print(Shape.searchColor(shapes,"Pink") + "\n");
 
     }
 }

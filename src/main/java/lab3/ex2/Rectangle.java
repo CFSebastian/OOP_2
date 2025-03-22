@@ -6,10 +6,12 @@ public class Rectangle extends Shape{
         this.color = color;
         this.area = area;
     }
+
     @Override
     public int getArea() {
         return this.area;
     }
+
     @Override
     public String getType() {
         return this.getClass().getSimpleName();

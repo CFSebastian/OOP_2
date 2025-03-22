@@ -34,7 +34,8 @@ public abstract class Shape {
         }
 
     }
-    public static void randomShape(Shape[] shapes) {
+
+    public static void bigestShape(Shape[] shapes) {
         int bigestShape = -1;
         Shape bigShape = null;
         for(Shape shape: shapes) {
@@ -42,14 +43,15 @@ public abstract class Shape {
                 bigestShape = shape.getArea();
                 bigShape = shape;
             }
-            System.out.println(bigShape.getType());
+
         }
+        System.out.println(bigShape.getType() + "\n");
     }
 
-    public static Shape searchColor(Shape[] shapes, String color) {
+    public static String searchColor(Shape[] shapes, String color) {
         for(Shape shape: shapes) {
             if(shape.getColor().equals(color)) {
-                return shape;
+                return shape.getType();
             }
         }
         return null;
