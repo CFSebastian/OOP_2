@@ -17,12 +17,13 @@ public class VIPReservation extends Reservation {
             if(hall.checkSeat(0,i)==false) {
                 hall.bookSear(0,i,this.getCustomer());
                 flag = true;
+                break;
             }
         }
         if(flag==false) {
-            System.out.println("Could not reserve seat");
+            System.out.println("Could not reserve seat \n");
         } else {
-            System.out.println("Reserved");
+            System.out.println("Reserved \n");
         }
     }
 }

@@ -20,9 +20,9 @@ public class RegularReservation extends Reservation {
         int column = input.nextInt();
         if(hall.checkSeat(line,column)==false) {
             hall.bookSear(line, column, this.getCustomer());
-            System.out.print("Seat reserved");
+            System.out.print("Seat reserved \n");
         } else {
-            System.out.println("Seat is already reserved");
+            System.out.println("Seat is already reserved \n");
         }
 
     }

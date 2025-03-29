@@ -1,29 +1,37 @@
 package main.java.lab4.ex3;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BookingPlanner implements Bookable {
-    private Reservation[] reservations;
     private CinemaHall cinemaHall;
+    private ArrayList<Reservation> reservations;
+
+    public BookingPlanner(CinemaHall cinemaHall) {
+        this.cinemaHall = cinemaHall;
+        reservations = new ArrayList<>();
+    }
 
     @Override
-    public void processReservation() {
+    public void processReservation(Customer customer) {
         Scanner input = new Scanner(System.in);
         System.out.print("Enter type: ");
         String type = input.nextLine();
-        System.out.print("Enter name: ");
+        /*System.out.print("Enter name: ");
         String name = input.nextLine();
         System.out.print("Enter email: ");
-        String email = input.nextLine();
-        int i = reservations.length;
-        i++;
+        String email = input.nextLine();*/
 
         switch (type) {
             case "Regular":
-                reservations[i] = new RegularReservation(new Customer(name,email));
+                reservations.add(new RegularReservation(customer));
+                reservations.getLast().reserve(cinemaHall);
                 break;
             case "VIP":
-                reservations[i] = new VIPReservation(new Customer(name,email));
+                reservations.add(new VIPReservation(customer));
+                reservations.getLast().reserve(cinemaHall);
                 break;
+            default:
+                System.out.println("Invalid type");
         }
     }
 
