@@ -1,6 +1,6 @@
-package main.java.lab4.ex2;
-import main.java.lab4.ex1.School;
-import main.java.lab4.ex1.Student;
+package main.java.lab4.ex1;
+
+import main.java.lab4.ex3.Seat;
 
 public class Main {
     public static void main(String[] args) {
@@ -11,8 +11,12 @@ public class Main {
         StudentReport rep1 = new StudentReport("Sebi");
         SchoolSummaryReport rep2 = new SchoolSummaryReport(school1.numberOfClassrooms());
 
-        String[][] Arg1 = new String[1][2];
-        //rep1.generate("Nemultumire 1", "Nemultumire 2");
-        //rep1.generate("Neconform 1", "Neconform 2");
+        rep1.generate(school1.getStudents());
+        rep2.generate(school1.getSchedules(), school1.getClassrooms());
+
+        rep1.print();
+        System.out.println("\n");
+        rep2.print();
+
     }
 }

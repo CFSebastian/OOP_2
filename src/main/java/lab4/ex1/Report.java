@@ -1,4 +1,4 @@
-package main.java.lab4.ex2;
+package main.java.lab4.ex1;
 
 public abstract class Report {
     protected StringBuilder reportDraft = new StringBuilder();

@@ -9,4 +9,8 @@ public class Classroom {
         this.number = number;
         this.type = type;
     }
+
+    public String getType() {
+        return this.type;
+    }
 }

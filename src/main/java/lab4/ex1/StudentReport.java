@@ -1,4 +1,4 @@
-package main.java.lab4.ex2;
+package main.java.lab4.ex1;
 
 public class StudentReport extends Report {
     private String studentName;
@@ -12,8 +12,11 @@ public class StudentReport extends Report {
         this.reportDraft.append("Student Report\n");
         this.reportDraft.append("Student name: " + this.studentName);
         if(args.length!=0){
-            for (Object arg : args) {
-                this.reportDraft.append("Argument: "   +arg.toString());
+            for (int i=0;i<args.length;i++) {
+                this.reportDraft.append("\n");
+                for  (int j=0;j<args[i].length;j++) {
+                    this.reportDraft.append("Argument("+i+"."+j+"): "+ args[i][j]+" ");
+                }
             }
         }
     }

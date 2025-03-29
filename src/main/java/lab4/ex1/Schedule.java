@@ -7,4 +7,8 @@ public class Schedule {
         this.day = day;
         this.hours = hours;
     }
+
+    public String getDay() {
+        return day;
+    }
 }

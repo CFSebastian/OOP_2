@@ -20,4 +20,16 @@ public class School {
     public int numberOfClassrooms() {
         return classrooms.length;
     }
+
+    public Schedule[] getSchedules() {
+        return schedules;
+    }
+
+    public Classroom[] getClassrooms() {
+        return classrooms;
+    }
+
+    public Student[] getStudents() {
+        return students;
+    }
 }
