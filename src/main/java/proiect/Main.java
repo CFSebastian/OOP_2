@@ -10,11 +10,13 @@ public class Main {
     public static void main(String[] args) {
 
         TreeMap<String,Integer> ports = new TreeMap<>();
+
         String[][] portType = new String[][]{{"USB3.0","2"},{"USB2.0","3"},{"USB-C","1"},{"JACK","1"}};
+
         for (int i=0;i<portType.length;i++) {
             ports.put(portType[i][0],Integer.parseInt(portType[i][1]));
         }
-        List<Component> componentsList = new ArrayList<>();
+
         Component[] components = new Component[]{
                 new Processor("Ryzen5 5600X",470d,6,3.7f,88,"AM4"),
                 new GraphicsCard("Radeon RX 6700XT",1200,12,230),
@@ -25,11 +27,17 @@ public class Main {
                 new Case("Case",100,"ATX")
         };
 
-
         Scanner input = new Scanner(System.in);
+
         Computer finalComputer =null;
+
         PcBro helper = PcBro.getInstance();
+        for(Component component : components) {
+            helper.addComponent(component);
+        }
+
         boolean appOn = true;
+
         while(appOn){
             System.out.print("Possible commands:\n\t- exit\n\t- build pc" +
                     "\n\t- recommend pc\n\t- select a pc\n\t- view components\nEnter command:");

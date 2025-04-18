@@ -32,49 +32,60 @@ public class PcBro {
         getComponentListOf(type);
         System.out.println("Select" + type + "id:");
         int id =input.nextInt();
-        if(componentsList.get(id) != null){
-            throw new PcComponentNotFound(type + "not found");
+        if (id < 0 || id >= componentsList.size() || componentsList.get(id) == null) {
+            throw new PcComponentNotFound(type + " not found");
         }
-        if(componentsList.get(id).type().equals(type)){
-            throw new PcComponentNotFound(type +"not found, found something else");
-        }
+
         switch(type){
-            case "CPU" ->{
-                myBuild.setProcessor((Processor)componentsList.get(id));
+            case "CPU" -> {
+                if (!(componentsList.get(id) instanceof Processor))
+                    throw new PcComponentNotFound("Selected component is not a CPU");
+                myBuild.setProcessor((Processor) componentsList.get(id));
             }
-            case "GPU" ->{
-                myBuild.setGraphicsCard((GraphicsCard)componentsList.get(id));
+            case "GPU" -> {
+                if (!(componentsList.get(id) instanceof GraphicsCard))
+                    throw new PcComponentNotFound("Selected component is not a GPU");
+                myBuild.setGraphicsCard((GraphicsCard) componentsList.get(id));
             }
-            case "RAM" ->{
+            case "RAM" -> {
+                if (!(componentsList.get(id) instanceof RAM))
+                    throw new PcComponentNotFound("Selected component is not a RAM stick");
                 System.out.println("How many RAM sticks?");
                 int number = input.nextInt();
                 List<RAM> ramList = new ArrayList<>();
-                for (int i=0;i<number;i++){
-                    ramList.add((RAM)componentsList.get(id));
+                for (int i = 0; i < number; i++) {
+                    ramList.add((RAM) componentsList.get(id));
                 }
                 myBuild.setRAMs(ramList);
             }
-            case "MB" ->{
-                myBuild.setMotherboard((Motherboard)componentsList.get(id));
+            case "MB" -> {
+                if (!(componentsList.get(id) instanceof Motherboard))
+                    throw new PcComponentNotFound("Selected component is not a Motherboard");
+                myBuild.setMotherboard((Motherboard) componentsList.get(id));
             }
-
-            case "SSD" ->{
+            case "SSD" -> {
+                if (!(componentsList.get(id) instanceof Storage))
+                    throw new PcComponentNotFound("Selected component is not a Storage device");
                 System.out.println("How many storage modules?");
                 int number = input.nextInt();
                 List<Storage> storageList = new ArrayList<>();
-                for (int i=0;i<number;i++){
+                for (int i = 0; i < number; i++) {
                     storageList.add((Storage) componentsList.get(id));
                 }
                 myBuild.setStorages(storageList);
             }
-            case "PSU" ->{
+            case "PSU" -> {
+                if (!(componentsList.get(id) instanceof PowerSupply))
+                    throw new PcComponentNotFound("Selected component is not a Power Supply");
                 myBuild.setPowerSupply((PowerSupply) componentsList.get(id));
             }
-            case "CASE" ->{
+            case "CASE" -> {
+                if (!(componentsList.get(id) instanceof Case))
+                    throw new PcComponentNotFound("Selected component is not a Case");
                 myBuild.setPCCase((Case) componentsList.get(id));
             }
-            default ->{
-                System.out.println("*******************Invalid Input**************************");
+            default -> {
+                System.out.println("******************* Invalid Input **************************");
             }
         }
 
@@ -159,16 +170,40 @@ public class PcBro {
         return finalComputer;
     }
 
-    public void  getComponentListOf(String type) {
-        if(type.equals("ALL")){
-            for  (Component component : componentsList) {
-                System.out.println(componentsList.indexOf(component)+ "|" + component.getName());
-            }
-        } else {
-            for (Component component : componentsList) {
-                if (component.toString().equals(type)) {
-                    System.out.println(componentsList.indexOf(component) + "|" + component.getName());
-                }
+    public void getComponentListOf(String type) {
+        for (int i = 0; i < componentsList.size(); i++) {
+            Component component = componentsList.get(i);
+
+            if (type.equals("ALL")) {
+                System.out.println(i + "|" + component.getName() + " | " + component.type());
+            } else if (type.equals("CPU") && component instanceof Processor) {
+                System.out.println(i + "|" );
+                Processor cpu = (Processor) component;
+                cpu.print();
+            } else if (type.equals("GPU") && component instanceof GraphicsCard) {
+                System.out.println(i + "|");
+                GraphicsCard cpu = (GraphicsCard) component;
+                cpu.print();
+            } else if (type.equals("RAM") && component instanceof RAM) {
+                System.out.println(i + "|");
+                GraphicsCard cpu = (GraphicsCard) component;
+                cpu.print();
+            } else if (type.equals("MB") && component instanceof Motherboard) {
+                System.out.println(i + "|");
+                Motherboard mb = (Motherboard) component;
+                mb.print();
+            } else if (type.equals("SSD") && component instanceof Storage) {
+                System.out.println(i + "|" );
+                Storage ssd = (Storage) component;
+                ssd.print();
+            } else if (type.equals("PSU") && component instanceof PowerSupply) {
+                System.out.println(i + "|" );
+                PowerSupply psu = (PowerSupply) component;
+                psu.print();
+            } else if (type.equals("CASE") && component instanceof Case) {
+                System.out.println(i + "|");
+                Case pcCase = (Case) component;
+                pcCase.print();
             }
         }
     }
