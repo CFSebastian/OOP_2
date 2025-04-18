@@ -22,7 +22,7 @@ My project is a terminal app that helps you build a personal computer, and is mo
 -Motherboard    
 -Storage   
 -PowerSupply   
--Ports - record used to store more in a list  
+
 
 ## Actions   
 **Components:**  
