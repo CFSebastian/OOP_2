@@ -23,16 +23,15 @@ public class AccountRepository {
     public void insertData(Connection connection, BankAccount account) {
 
         String sql = """
-                    INSERT INTO bank_accounts (id, name, balance, active_status, client_id)
-                    VALUES (?, ?, ?, ?, ?)
+                    INSERT INTO bank_accounts ( name, balance, active_status, client_id)
+                    VALUES ( ?, ?, ?, ?)
                     """;
 
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setLong(1, account.getId());
-            ps.setString(2, account.getName());
-            ps.setDouble(3, account.getBalance());
-            ps.setBoolean(4, account.isActiveStatus());
-            ps.setLong(5, account.getClientId());
+            ps.setString(1, account.getName());
+            ps.setDouble(2, account.getBalance());
+            ps.setBoolean(3, account.isActiveStatus());
+            ps.setLong(4, account.getClientId());
 
             int insertedRows =  ps.executeUpdate();
             System.out.println("Inserted " + insertedRows + " rows");

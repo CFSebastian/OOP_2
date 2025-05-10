@@ -1,3 +1,5 @@
+-- BIGSERIAL se incrementeaza automat => nu trebuie sa oferim si id ca parametru cand adaugam elemente
+
 CREATE TABLE IF NOT EXISTS bank_clients (
         id BIGSERIAL PRIMARY KEY,
         name varchar(50) NOT NULL,
