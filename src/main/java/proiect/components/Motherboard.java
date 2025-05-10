@@ -10,17 +10,17 @@ public class Motherboard extends Component {
     private String formFactor = "";
     private String socket = "";
     private String technology = "";//RAM
-    public Motherboard(String name, double price) {
-        super(name, price);
+    public Motherboard(long id,String name, double price) {
+        super(id,name, price);
     }
-    public Motherboard(String name, double price, String formFactor, String socket,String technology) {
-        super(name, price,70);
+    public Motherboard(long id,String name, double price, String formFactor, String socket,String technology) {
+        super(id,name, price,70);
         this.formFactor = formFactor;
         this.socket = socket;
         this.technology = technology;
     }
-    public Motherboard(String name, double price, String formFactor, String socket, String technology, TreeMap<String,Integer> ports) {
-        this(name, price, formFactor, socket, technology);
+    public Motherboard(long id,String name, double price, String formFactor, String socket, String technology, TreeMap<String,Integer> ports) {
+        this(id,name, price, formFactor, socket, technology);
         this.ports = ports;
     }
     public String type() {

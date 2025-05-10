@@ -1,6 +1,7 @@
 package main.java.proiect;
 
 import main.java.proiect.components.*;
+import main.java.proiect.exceptions.PcComponentNotFound;
 
 import java.util.*;
 

@@ -2,11 +2,11 @@ package main.java.proiect.components;
 
 public class PowerSupply extends Component {
     private String powerEfficiency = "";
-    public PowerSupply(String name, double price) {
-        super(name,price);
+    public PowerSupply(long id,String name, double price) {
+        super(id,name,price);
     }
-    public PowerSupply(String name, double price, String powerEfficiency, int power) {
-        super(name,price,power);
+    public PowerSupply(long id,String name, double price, String powerEfficiency, int power) {
+        super(id,name,price,power);
         this.powerEfficiency = powerEfficiency;
     }
 

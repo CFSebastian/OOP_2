@@ -18,13 +18,13 @@ public class Main {
         }
 
         Component[] components = new Component[]{
-                new Processor("Ryzen5 5600X",470d,6,3.7f,88,"AM4"),
-                new GraphicsCard("Radeon RX 6700XT",1200,12,230),
-                new RAM("FVulcan",100,8,3200,"DDR4"),
-                new Motherboard("B550 Gaming X V2",200,"ATX","AM4","DDR4",ports),
-                new Storage("Adata",200,1000),
-                new PowerSupply("BP750",400,"Gold",750),
-                new Case("Case",100,"ATX")
+                new Processor(1,"Ryzen5 5600X",470d,6,3.7f,88,"AM4"),
+                new GraphicsCard(2,"Radeon RX 6700XT",1200,12,230),
+                new RAM(3,"FVulcan",100,8,3200,"DDR4"),
+                new Motherboard(4,"B550 Gaming X V2",200,"ATX","AM4","DDR4",ports),
+                new Storage(5,"Adata",200,1000),
+                new PowerSupply(6,"BP750",400,"Gold",750),
+                new Case(7,"Case",100,"ATX")
         };
 
         Scanner input = new Scanner(System.in);

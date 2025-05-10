@@ -2,11 +2,11 @@ package main.java.proiect.components;
 
 public class Case extends Component {
     private String formFactor = "";
-    public Case (String name, double price) {
-        super(name,price);
+    public Case (long id, String name, double price) {
+        super(id,name,price);
     }
-    public Case (String name, double price , String formFactor) {
-        super(name,price,10);
+    public Case (long id,String name, double price , String formFactor) {
+        super(id,name,price,10);
         this.formFactor = formFactor;
     }
 

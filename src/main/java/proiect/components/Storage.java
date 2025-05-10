@@ -3,11 +3,11 @@ package main.java.proiect.components;
 
 public class Storage extends Component {
     public int memory = 0;
-    public Storage(String name, double price) {
-        super(name,price);
+    public Storage(long id,String name, double price) {
+        super(id,name,price);
     }
-    public Storage(String name, double price, int memory) {
-        super(name,price,15);
+    public Storage(long id,String name, double price, int memory) {
+        super(id,name,price,15);
         this.memory = memory;
 
     }

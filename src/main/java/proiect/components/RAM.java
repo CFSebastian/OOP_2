@@ -4,11 +4,11 @@ public class RAM extends Component{
     private int memory = 0;
     private int frequency = 0;
     private String technology = "";
-    public RAM(String name, double price) {
-        super(name,price);
+    public RAM(long id,String name, double price) {
+        super(id,name,price);
     }
-    public RAM(String name, double price, int memory, int frequency, String technology) {
-        super(name,price,10);
+    public RAM(long id,String name, double price, int memory, int frequency, String technology) {
+        super(id,name,price,10);
         this.memory = memory;
         this.frequency = frequency;
         this.technology = technology;
