@@ -45,7 +45,7 @@ public class ProcessorRepository {
         }
     }
 
-    public Optional<Processor> getProcessorById(Connection connection, long id) {
+    /*public Optional<Processor> getProcessorById(Connection connection, long id) {
         String sql = """
                 SELECT *
                 FROM processors cpu
@@ -65,7 +65,7 @@ public class ProcessorRepository {
                             result.getFloat("frequency"),
                             result.getInt("power"),
                             result.getString("socket")
-                    ));*/
+                    ));
                     if (result.next()) {
                         String name = result.getString("name");
                         double price = result.getDouble("address");
@@ -82,5 +82,5 @@ public class ProcessorRepository {
             return Optional.empty();
         }
 
-    }
+    }*/
 }
