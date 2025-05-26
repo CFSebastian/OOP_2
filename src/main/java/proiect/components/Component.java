@@ -4,7 +4,7 @@ public abstract class Component {
     private long id;
     private String name;
     private double price;
-    private int power = -1;
+    protected int power = -1;
 
     public Component(String name, double price) {
         this.name = name;
