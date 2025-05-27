@@ -23,15 +23,14 @@ public class GraphicsCardRepository {
     //public GraphicsCard(long id,String name, double price, int vRAM,  int power)
     public void insertData(Connection connection, GraphicsCard gpu) {
         String sql = """
-                INSERT INTO graphics_cards (id,name,price,power,vRam) 
-                VALUES (?,?,?,?,?)
+                INSERT INTO graphics_cards (name,price,power,vRam) 
+                VALUES (?,?,?,?)
                 """;
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setLong(1, gpu.getId());
-            ps.setString(2, gpu.getName());
-            ps.setDouble(3, gpu.getPrice());
-            ps.setInt(4, gpu.getPower());
-            ps.setInt(5, gpu.getvRAM());
+            ps.setString(1, gpu.getName());
+            ps.setDouble(2, gpu.getPrice());
+            ps.setInt(3, gpu.getPower());
+            ps.setInt(4, gpu.getvRAM());
 
             int insertedRows = ps.executeUpdate();
             System.out.println("Inserted " + insertedRows + " rows");
@@ -41,19 +40,19 @@ public class GraphicsCardRepository {
         }
     }
 
-    public Optional<GraphicsCard> getGraphicsCardById(Connection connection, long id) {
+    public Optional<GraphicsCard> getGraphicsCardByName(Connection connection, String name) {
         String sql = """
                 SELECT *
                 FROM graphics_cards
-                WHERE id=?
+                WHERE name=?
                 """;
         try (PreparedStatement ps = connection.prepareStatement(sql))
         {
-            ps.setLong(1,id);
+            ps.setString(1,name);
 
             try (ResultSet result = ps.executeQuery()) {
                 if (result.next()) {
-                    String name = result.getString("name");
+                    long id = result.getLong("id");
                     int price = result.getInt("price");
                     int power = result.getInt("power");
                     int vRAM = result.getInt("vRAM");

@@ -26,17 +26,16 @@ public class RamRepository {
 
     public void insertData(Connection connection, RAM ram) {
         String sql = """
-                INSERT INTO rams (id,name,price,power,memory,frequency,technology) 
-                VALUES (?,?,?,?,?,?,?)
+                INSERT INTO rams (name,price,power,memory,frequency,technology) 
+                VALUES (?,?,?,?,?,?)
                 """;
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setLong(1, ram.getId());
-            ps.setString(2, ram.getName());
-            ps.setDouble(3, ram.getPrice());
-            ps.setInt(4, ram.getPower());
-            ps.setInt(5, ram.getMemory());
-            ps.setInt(6, ram.getFrequency());
-            ps.setString(7, ram.getTechnology());
+            ps.setString(1, ram.getName());
+            ps.setDouble(2, ram.getPrice());
+            ps.setInt(3, ram.getPower());
+            ps.setInt(4, ram.getMemory());
+            ps.setInt(5, ram.getFrequency());
+            ps.setString(6, ram.getTechnology());
 
             int insertedRows = ps.executeUpdate();
             System.out.println("Inserted " + insertedRows + " rows");
@@ -45,19 +44,19 @@ public class RamRepository {
             throw new RuntimeException(e);
         }
     }
-    public Optional<RAM> getRamById(Connection connection, long id) {
+    public Optional<RAM> getRamByName(Connection connection, String name) {
         String sql = """
                 SELECT *
                 FROM rams 
-                WHERE id=?
+                WHERE name=?
                 """;
         try (PreparedStatement ps = connection.prepareStatement(sql))
         {
-            ps.setLong(1,id);
+            ps.setString(1,name);
 
             try (ResultSet result = ps.executeQuery()) {
                 if (result.next()) {
-                    String name = result.getString("name");
+                    long id = result.getLong("id");
                     double price = result.getDouble("price");
                     int power = result.getInt("power");
                     int memory = result.getInt("memory");

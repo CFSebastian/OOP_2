@@ -23,17 +23,16 @@ public class ProcessorRepository {
 //public Processor(String name, double price, int coreNumber, float frequency, int power, String socket)
     public void insertData(Connection connection, Processor processor) {
         String sql = """
-                INSERT INTO processors (id,name,price,power,core_number,frequency,socket) 
-                VALUES (?,?,?,?,?,?,?)
+                INSERT INTO processors (name,price,power,core_number,frequency,socket) 
+                VALUES (?,?,?,?,?,?)
                 """;
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setLong(1, processor.getId());
-            ps.setString(2, processor.getName());
-            ps.setDouble(3, processor.getPrice());
-            ps.setInt(4, processor.getPower());
-            ps.setInt(5, processor.getCoreNumber());
-            ps.setFloat(6, processor.getFrequency());
-            ps.setString(7, processor.getSocket());
+            ps.setString(1, processor.getName());
+            ps.setDouble(2, processor.getPrice());
+            ps.setInt(3, processor.getPower());
+            ps.setInt(4, processor.getCoreNumber());
+            ps.setFloat(5, processor.getFrequency());
+            ps.setString(6, processor.getSocket());
 
             int insertedRows = ps.executeUpdate();
             System.out.println("Inserted " + insertedRows + " rows");
@@ -43,19 +42,19 @@ public class ProcessorRepository {
         }
     }
 
-    public Optional<Processor> getProcessorById(Connection connection, long id) {
+    public Optional<Processor> getProcessorByName(Connection connection, String name) {
         String sql = """
                 SELECT *
                 FROM processors cpu
-                WHERE cpu.id=?
+                WHERE cpu.name=?
                 """;
         try (PreparedStatement ps = connection.prepareStatement(sql))
         {
-            ps.setLong(1,id);
+            ps.setString(1,name);
 
             try (ResultSet result = ps.executeQuery()) {
                     if (result.next()) {
-                        String name = result.getString("name");
+                        long id = result.getLong("id");
                         double price = result.getDouble("price");
                         int power = result.getInt("power");
                         int coreNumber = result.getInt("core_number");

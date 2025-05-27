@@ -2,29 +2,54 @@ package main.java.proiect;
 
 
 import main.java.proiect.components.*;
+import main.java.proiect.components.Component;
+import main.java.proiect.services.GraphicsCardService;
+import main.java.proiect.services.ProcessorService;
+import main.java.proiect.services.RamService;
+import main.java.proiect.services.StorageService;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
 
+        GraphicsCardService graphicsCardService = new GraphicsCardService();
+        ProcessorService processorService = new ProcessorService();
+        RamService ramService = new RamService();
+        StorageService storageService = new StorageService();
+
         TreeMap<String,Integer> ports = new TreeMap<>();
 
         String[][] portType = new String[][]{{"USB3.0","2"},{"USB2.0","3"},{"USB-C","1"},{"JACK","1"}};
+
+        processorService.insertData(new Processor("Ryzen5 5600X",23,6,3.7f,88,"AM4"));
+        graphicsCardService.insertData(new GraphicsCard("Radeon RX 6700XT",23,12,230));
+        ramService.insertData(new RAM("FVulcan",23,8,3200,"DDR4"));
+        storageService.insertData(new Storage("Adata",23,1000));
+
+        processorService.deleteProcessor(processorService.getProcessorByName("Ryzen5 5600XT").getId());
+        graphicsCardService.deleteGraphicsCard(graphicsCardService.getGraphicsCardByName("Radeon RX 6700XT").getId());
+
+        processorService.insertData(new Processor("Ryzen5 5600X",470,6,3.7f,88,"AM4"));
+        graphicsCardService.insertData(new GraphicsCard("Radeon RX 6700XT",1200,12,230));
+
+        ramService.updateRam(ramService.getRamByName("FVulcan").getId(),new RAM("FVulcan",100,8,3200,"DDR4"));
+        storageService.updateStorage(storageService.getStorageByName("Adata").getId(),new Storage("Adata",200,1000));
 
         for (int i=0;i<portType.length;i++) {
             ports.put(portType[i][0],Integer.parseInt(portType[i][1]));
         }
 
         Component[] components = new Component[]{
-                new Processor(1,"Ryzen5 5600X",470d,6,3.7f,88,"AM4"),
-                new GraphicsCard(2,"Radeon RX 6700XT",1200,12,230),
-                new RAM(3,"FVulcan",100,8,3200,"DDR4"),
                 new Motherboard(4,"B550 Gaming X V2",200,"ATX","AM4","DDR4",ports),
-                new Storage(5,"Adata",200,1000),
                 new PowerSupply(6,"BP750",400,"Gold",750),
-                new Case(7,"Case",100,"ATX")
+                new Case(7,"Case",100,"ATX"),
+                processorService.getProcessorByName("Ryzen5 5600X"),
+                graphicsCardService.getGraphicsCardByName("Radeon RX 6700XT"),
+                ramService.getRamByName("FVulcan"),
+                storageService.getStorageByName("Adata")
         };
 
         Scanner input = new Scanner(System.in);

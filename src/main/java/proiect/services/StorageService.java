@@ -24,12 +24,12 @@ public class StorageService {
         }
     }
 
-    public Storage getGraphicsCardById(long id) {
-        Optional<Storage> storage = storageRepository.getStorageById(config.ConnectionProvider.getConnection(), id);
+    public Storage getStorageByName(String name) {
+        Optional<Storage> storage = storageRepository.getStorageByName(config.ConnectionProvider.getConnection(), name);
         return storage.orElseThrow(StorageNotFound::new);
     }
 
-    public void updateGraphicsCard(long id, Storage storage) {
+    public void updateStorage(long id, Storage storage) {
         try (Connection connection = config.ConnectionProvider.getConnection()) {
             storageRepository.updateStorage(connection, id, storage);
         } catch (SQLException e) {
@@ -37,7 +37,7 @@ public class StorageService {
         }
     }
 
-    public void deleteGraphicsCard(long id) {
+    public void deleteStorage(long id) {
         try (Connection connection = config.ConnectionProvider.getConnection()) {
             storageRepository.deleteStorage(connection, id);
         } catch (SQLException e) {

@@ -23,15 +23,14 @@ public class StorageRepository {
 
     public void insertData(Connection connection, Storage storage) {
         String sql = """
-                INSERT INTO storages (id,name,price,power,storage) 
-                VALUES (?,?,?,?,?)
+                INSERT INTO storages (name,price,power,storage) 
+                VALUES (?,?,?,?)
                 """;
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setLong(1, storage.getId());
-            ps.setString(2, storage.getName());
-            ps.setDouble(3, storage.getPrice());
-            ps.setInt(4, storage.getPower());
-            ps.setInt(5, storage.getMemory());
+            ps.setString(1, storage.getName());
+            ps.setDouble(2, storage.getPrice());
+            ps.setInt(3, storage.getPower());
+            ps.setInt(4, storage.getMemory());
 
             int insertedRows = ps.executeUpdate();
             System.out.println("Inserted " + insertedRows + " rows");
@@ -41,19 +40,19 @@ public class StorageRepository {
         }
     }
 
-    public Optional<Storage> getStorageById(Connection connection, long id) {
+    public Optional<Storage> getStorageByName(Connection connection, String name) {
         String sql = """
                 SELECT *
                 FROM storages
-                WHERE id=?
+                WHERE name=?
                 """;
         try (PreparedStatement ps = connection.prepareStatement(sql))
         {
-            ps.setLong(1,id);
+            ps.setString(1,name);
 
             try (ResultSet result = ps.executeQuery()) {
                 if (result.next()) {
-                    String name = result.getString("name");
+                    long id = result.getLong("id");
                     int price = result.getInt("price");
                     int power = result.getInt("power");
                     int memory = result.getInt("memory");

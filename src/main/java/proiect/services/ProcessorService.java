@@ -22,12 +22,12 @@ public class ProcessorService {
         }
     }
 
-    public Processor getGraphicsCardById(long id) {
-        Optional<Processor> cpu = processorRepository.getProcessorById(ConnectionProvider.getConnection(), id);
+    public Processor getProcessorByName(String name) {
+        Optional<Processor> cpu = processorRepository.getProcessorByName(ConnectionProvider.getConnection(), name);
         return cpu.orElseThrow(ProcessorNotFound::new);
     }
 
-    public void updateGraphicsCard(long id, Processor cpu) {
+    public void updateProcessor(long id, Processor cpu) {
         try (Connection connection = ConnectionProvider.getConnection()) {
             processorRepository.updateProcessor(connection, id, cpu);
         } catch (SQLException e) {
@@ -35,7 +35,7 @@ public class ProcessorService {
         }
     }
 
-    public void deleteGraphicsCard(long id) {
+    public void deleteProcessor(long id) {
         try (Connection connection = ConnectionProvider.getConnection()) {
             processorRepository.deleteProcessor(connection, id);
         } catch (SQLException e) {

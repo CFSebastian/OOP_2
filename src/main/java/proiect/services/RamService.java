@@ -12,7 +12,7 @@ import java.util.Optional;
 public class RamService {
     private final RamRepository ramRepository = RamRepository.getInstance();
 
-    public RamService(RamRepository ramRepository) {}
+    public RamService() {}
 
     public void insertData(RAM ram) {
         try (Connection connection = ConnectionProvider.getConnection()) {
@@ -22,12 +22,12 @@ public class RamService {
         }
     }
 
-    public RAM getGraphicsCardById(long id) {
-        Optional<RAM> ram = ramRepository.getRamById(ConnectionProvider.getConnection(), id);
+    public RAM getRamByName(String name) {
+        Optional<RAM> ram = ramRepository.getRamByName(ConnectionProvider.getConnection(), name);
         return ram.orElseThrow(RamNotFound::new);
     }
 
-    public void updateGraphicsCard(long id, RAM ram) {
+    public void updateRam(long id, RAM ram) {
         try (Connection connection = ConnectionProvider.getConnection()) {
             ramRepository.updateRam(connection, id, ram);
         } catch (SQLException e) {
@@ -35,7 +35,7 @@ public class RamService {
         }
     }
 
-    public void deleteGraphicsCard(long id) {
+    public void deleteRam(long id) {
         try (Connection connection = ConnectionProvider.getConnection()) {
             ramRepository.deleteRam(connection, id);
         } catch (SQLException e) {

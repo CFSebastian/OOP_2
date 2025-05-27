@@ -22,8 +22,8 @@ public class GraphicsCardService {
         }
     }
 
-    public GraphicsCard getGraphicsCardById(long id) {
-        Optional<GraphicsCard> gpu = graphicsCardRepository.getGraphicsCardById(ConnectionProvider.getConnection(), id);
+    public GraphicsCard getGraphicsCardByName(String name) {
+        Optional<GraphicsCard> gpu = graphicsCardRepository.getGraphicsCardByName(ConnectionProvider.getConnection(), name);
         return gpu.orElseThrow(GraphicsCardNotFound::new);
     }
 
