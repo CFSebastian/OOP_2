@@ -1,7 +1,10 @@
 # OPP 2 Project
 
 ## Introduction   
-My project is a terminal app that helps you build a personal computer, and is more inclined towards gaming computers.    
+My project is a terminal app that helps you build a personal computer, and is more inclined towards gaming computers. 
+I also added an admin interface to simulate the CRUD activity of four components, it does not let you add and update   
+with new data, instead it uses recreated objects. And there is also an Audit service with a methode that writes in .txt   
+file.
 
 ## Packages classes  
 **project**:  
@@ -23,8 +26,14 @@ My project is a terminal app that helps you build a personal computer, and is mo
 -Storage   
 -PowerSupply   
 
+**components - part 2**:
+-ConnectionProvider
+-repository classes (repositories for 4 components)
+-service classes (services for 4 components and an Audit class for audit)
+-Admin class - for interacting with CRUD actions
 
 ## Actions   
+### Part 1
 **Components:**  
 -print() - prints the details of a component or just the name and price if not overridden  
 -type() - returns type of component to differentiate between them  
@@ -46,4 +55,15 @@ My project is a terminal app that helps you build a personal computer, and is mo
 -selectPc() -  list all the computers in the memory and prompts the user to select his choice  
 -getComponentListOf(String type) -  gets a list of components depending on what type is selected  
 
+### Part 2
+**Repositories**  
+Functions for insert, update, select after partial name and delete functions
 
+**services for components**  
+Functions for insert, update, select after partial name and delete functions
+
+**Audit service**
+-addToAudit() - function to write in files/audit.txt when a user selects one of the actions possible in the primary menu and saves the current date and time at witch the action occurred
+
+**Admin**
+Diverse function to test the CRUD functions from services for the 4 components that have tables in the DB
