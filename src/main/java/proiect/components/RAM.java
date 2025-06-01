@@ -68,13 +68,14 @@ public class RAM extends Component{
 
     @Override
     public String toString() {
-        return "Proccesor{" +
+        return "Ram{" +
                 "id=" + this.getId() +
+                ", name='" + this.getName() + '\'' +
                 ", price='" + this.getPrice() + '\'' +
                 ", power='" + this.getPower() + '\'' +
                 ", memory=" + this.memory + '\'' +
                 ", frequency=" + this.frequency + '\'' +
-                ", technology='" + this.technology +
+                ", technology='" + this.technology  + '\''+
                 '}';
     }
 }

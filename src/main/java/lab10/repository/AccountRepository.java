@@ -1,4 +1,4 @@
-package repository;
+package main.java.lab10.repository;
 
 import models.BankAccount;
 

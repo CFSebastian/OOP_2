@@ -1,9 +1,9 @@
-package service;
+package main.java.lab10.service;
 
-import config.ConnectionProvider;
+import main.java.lab10.config.ConnectionProvider;
 import exceptions.AccountNotFoundException;
 import models.BankAccount;
-import repository.AccountRepository;
+import main.java.lab10.repository.AccountRepository;
 
 import java.sql.Connection;
 import java.sql.SQLException;

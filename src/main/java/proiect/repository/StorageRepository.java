@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class StorageRepository {
@@ -40,30 +42,33 @@ public class StorageRepository {
         }
     }
 
-    public Optional<Storage> getStorageByName(Connection connection, String name) {
+    public List<Storage> getStorageByName(Connection connection, String partialName) {
         String sql = """
                 SELECT *
                 FROM storages
-                WHERE name=?
+                WHERE name like ?
                 """;
+
+        List<Storage> storageList = new ArrayList<>();
         try (PreparedStatement ps = connection.prepareStatement(sql))
         {
-            ps.setString(1,name);
+            ps.setString(1,"%"+partialName+"%");
 
             try (ResultSet result = ps.executeQuery()) {
                 if (result.next()) {
                     long id = result.getLong("id");
+                    String name =  result.getString("name");
                     int price = result.getInt("price");
                     int power = result.getInt("power");
-                    int memory = result.getInt("memory");
-                    return Optional.of(new Storage(id, name, price, power, memory));
+                    int memory = result.getInt("storage");
+                    storageList.add(new Storage(id, name, price, power, memory));
                 }
 
             }
         }   catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return Optional.empty();
+        return storageList;
 
     }
     public void updateStorage(Connection connection, long id, Storage storage) {

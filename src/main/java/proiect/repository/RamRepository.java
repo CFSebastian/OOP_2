@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class RamRepository {
@@ -44,32 +46,34 @@ public class RamRepository {
             throw new RuntimeException(e);
         }
     }
-    public Optional<RAM> getRamByName(Connection connection, String name) {
+    public List<RAM> getRamByName(Connection connection, String partialName) {
         String sql = """
                 SELECT *
                 FROM rams 
-                WHERE name=?
+                WHERE name like ?
                 """;
+        List<RAM> rams = new ArrayList<>();
         try (PreparedStatement ps = connection.prepareStatement(sql))
         {
-            ps.setString(1,name);
+            ps.setString(1,"%"+partialName+"%");
 
             try (ResultSet result = ps.executeQuery()) {
-                if (result.next()) {
+                while (result.next()) {
                     long id = result.getLong("id");
+                    String name =  result.getString("name");
                     double price = result.getDouble("price");
                     int power = result.getInt("power");
                     int memory = result.getInt("memory");
                     int frequency = result.getInt("frequency");
                     String technology = result.getString("technology");
-                    return Optional.of(new RAM(id, name, price, power, memory, frequency, technology));
+                   rams.add(new RAM(id, name, price, power, memory, frequency, technology));
                 }
 
             }
         }   catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return Optional.empty();
+        return rams;
 
     }
     public void updateRam(Connection connection, long id, RAM ram) {

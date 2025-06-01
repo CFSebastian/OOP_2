@@ -43,11 +43,12 @@ public class Storage extends Component {
 
     @Override
     public String toString() {
-        return "Proccesor{" +
+        return "Storage{" +
                 "id=" + this.getId() +
+                ", name='" + this.getName() + '\'' +
                 ", price='" + this.getPrice() + '\'' +
                 ", power='" + this.getPower() + '\'' +
-                ", memory='" + this.memory +
+                ", memory='" + this.memory  + '\''+
                 '}';
     }
 }

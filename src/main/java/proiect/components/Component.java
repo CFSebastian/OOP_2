@@ -58,6 +58,7 @@ public abstract class Component {
     public String toString() {
         return "Component{" +
                 "id=" + id +
+                ", name='" + name + '\'' +
                 ", price='" + price + '\'' +
                 ", power='" + power +
                 '}';

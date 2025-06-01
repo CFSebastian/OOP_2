@@ -1,4 +1,4 @@
-package config;
+package main.java.lab10.config;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

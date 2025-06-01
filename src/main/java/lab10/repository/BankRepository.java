@@ -1,4 +1,4 @@
-package repository;
+package main.java.lab10.repository;
 
 import models.Client;
 
@@ -29,7 +29,6 @@ public class BankRepository {
                     """;
 
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            //ps.setLong(1, client.getId());
             ps.setString(1, client.getName());
             ps.setString(2, client.getAddress());
             ps.setBoolean(3, client.isActiveStatus());

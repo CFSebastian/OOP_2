@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class ProcessorRepository {
@@ -42,38 +44,41 @@ public class ProcessorRepository {
         }
     }
 
-    public Optional<Processor> getProcessorByName(Connection connection, String name) {
+    public List<Processor> getProcessorByName(Connection connection, String partialName) {
         String sql = """
                 SELECT *
                 FROM processors cpu
-                WHERE cpu.name=?
+                WHERE cpu.name like ?
                 """;
+
+        List<Processor> processors = new ArrayList<>();
         try (PreparedStatement ps = connection.prepareStatement(sql))
         {
-            ps.setString(1,name);
+            ps.setString(1,"%"+partialName+"%");
 
             try (ResultSet result = ps.executeQuery()) {
-                    if (result.next()) {
+                    while (result.next()) {
                         long id = result.getLong("id");
+                        String name =  result.getString("name");
                         double price = result.getDouble("price");
                         int power = result.getInt("power");
                         int coreNumber = result.getInt("core_number");
                         float frequency = result.getFloat("frequency");
                         String socket = result.getString("socket");
-                        return Optional.of(new Processor(id, name, price, coreNumber, frequency, power, socket));
+                        processors.add(new Processor(id, name, price, coreNumber, frequency, power, socket));
                     }
 
             }
         }   catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return Optional.empty();
+        return processors;
 
     }
     public void updateProcessor(Connection connection, long id, Processor processor) {
         String sql = """
                 UPDATE processors
-                SET name = ?, price = ?, power = ?, coreNumber = ?, frequency = ?, socket = ?
+                SET name = ?, price = ?, power = ?, core_number = ?, frequency = ?, socket = ?
                 WHERE id = ?
                 """;
         try(PreparedStatement ps = connection.prepareStatement(sql)) {

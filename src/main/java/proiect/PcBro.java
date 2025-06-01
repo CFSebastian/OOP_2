@@ -132,19 +132,24 @@ public class PcBro {
                         computer.print();
                     }
                 } else {
-                    System.out.println("There are no computers");
+                    System.out.println("There are no computers to suggest");
                 }
             }
             case "LOW","MEDIUM","HIGH" ->{
+                Boolean existsSugestion = false;
                 System.out.println(performance + "performance computers (from cheapest) are:");
                 for (Computer computer : computerSugestions) {
                     if (computer.classifyPC().equals(performance)) {
                         computer.print();
+                        existsSugestion = true;
+                    }
+                    if(existsSugestion ==  false) {
+                        System.out.println("There are no suggestions for computers with the performance: " + performance);
                     }
                 }
             }
             default -> {
-                System.out.println("Invalid performance");
+                System.out.println("**********************Invalid performance*******************************");
 
             }
 

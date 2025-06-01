@@ -61,11 +61,12 @@ public class Processor extends Component{
     public String toString() {
         return "Proccesor{" +
                 "id=" + this.getId() +
+                ", name='" + this.getName() + '\'' +
                 ", price='" + this.getPrice() + '\'' +
                 ", power='" + this.getPower() + '\'' +
                 ", coreNumber=" + coreNumber + '\'' +
                 ", frequency=" + frequency + '\'' +
-                ", socket='" + socket +
+                ", socket='" + socket  + '\''+
                 '}';
     }
 }

@@ -1,7 +1,9 @@
-import config.ConnectionProvider;
+package main.java.lab10;
+
+import main.java.lab10.config.ConnectionProvider;
 import models.Client;
-import service.AccountService;
-import service.BankService;
+import main.java.lab10.service.AccountService;
+import main.java.lab10.service.BankService;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -20,8 +22,8 @@ public class Main {
         BankService bankService = new BankService();
         Client client = new Client( "Gigi kent", "Str. Cutare, nr. 10", true);
         bankService.insertData(client);
-        //System.out.println(bankService.getClientById(1L));
-        //System.out.println(bankService.getClientById(2L));
+        System.out.println(bankService.getClientById(1L));
+        System.out.println(bankService.getClientById(2L));
 
     }
 }

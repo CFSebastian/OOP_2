@@ -1,12 +1,13 @@
 package main.java.proiect.services;
 
 import main.java.proiect.repository.RamRepository;
-import config.ConnectionProvider;
+import  main.java.proiect.config.ConnectionProvider;
 import main.java.proiect.components.RAM;
 import main.java.proiect.exceptions.RamNotFound;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Optional;
 
 public class RamService {
@@ -22,9 +23,16 @@ public class RamService {
         }
     }
 
-    public RAM getRamByName(String name) {
-        Optional<RAM> ram = ramRepository.getRamByName(ConnectionProvider.getConnection(), name);
-        return ram.orElseThrow(RamNotFound::new);
+    public List<RAM> getRamByName(String name) {
+        if (name == null || name.isBlank()) {
+            name = "";
+        }
+        List<RAM> rams = ramRepository.getRamByName(ConnectionProvider.getConnection(), name);
+        if(rams.isEmpty()) {
+            throw new RamNotFound();
+        } else {
+            return rams;
+        }
     }
 
     public void updateRam(long id, RAM ram) {

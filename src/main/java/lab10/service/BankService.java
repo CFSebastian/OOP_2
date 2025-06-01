@@ -1,8 +1,8 @@
-package service;
+package main.java.lab10.service;
 
-import config.ConnectionProvider;
+import main.java.lab10.config.ConnectionProvider;
 import exceptions.ClientNotFoundException;
-import repository.BankRepository;
+import main.java.lab10.repository.BankRepository;
 import models.Client;
 
 import java.sql.Connection;

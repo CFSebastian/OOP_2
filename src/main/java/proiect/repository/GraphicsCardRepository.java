@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class GraphicsCardRepository {
@@ -40,30 +42,32 @@ public class GraphicsCardRepository {
         }
     }
 
-    public Optional<GraphicsCard> getGraphicsCardByName(Connection connection, String name) {
+    public List<GraphicsCard> getGraphicsCardByName(Connection connection, String partialName) {
         String sql = """
                 SELECT *
                 FROM graphics_cards
-                WHERE name=?
+                WHERE name like ?
                 """;
+        List<GraphicsCard> graphicsCards = new ArrayList<>();
         try (PreparedStatement ps = connection.prepareStatement(sql))
         {
-            ps.setString(1,name);
+            ps.setString(1,"%"+partialName+"%");
 
             try (ResultSet result = ps.executeQuery()) {
-                if (result.next()) {
+                while (result.next()) {
                     long id = result.getLong("id");
+                    String name =  result.getString("name");
                     int price = result.getInt("price");
                     int power = result.getInt("power");
                     int vRAM = result.getInt("vRAM");
-                    return Optional.of(new GraphicsCard(id, name, price, vRAM, power));
+                    graphicsCards.add(new GraphicsCard(id, name, price, vRAM, power));
                 }
 
             }
         }   catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return Optional.empty();
+        return graphicsCards;
 
     }
     public void updateGraphicsCard(Connection connection, long id, GraphicsCard gpu) {

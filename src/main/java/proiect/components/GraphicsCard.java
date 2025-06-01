@@ -39,11 +39,12 @@ public class GraphicsCard extends Component {
 
     @Override
     public String toString() {
-        return "Proccesor{" +
+        return "Graphics Card{" +
                 "id=" + this.getId() +
+                ", name='" + this.getName() + '\'' +
                 ", price='" + this.getPrice() + '\'' +
                 ", power='" + this.getPower() + '\'' +
-                ", vRAM='" + vRAM +
+                ", vRAM='" + vRAM  + '\''+
                 '}';
     }
 
