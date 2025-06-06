@@ -2,7 +2,7 @@
 
 ## Introduction   
 My project is a terminal app that helps you build a personal computer, and is more inclined towards gaming computers. 
-I also added an admin interface to simulate the CRUD activity of four components, it does not let you add and update with new data, instead it uses pre-create objects. And there is also an Audit service with a methode that writes in .txt file.
+I also added an admin to simulate the CRUD activity of four components, it does not let you add and update with new data, instead it uses pre-create objects. And there is also an Audit service with a methode that writes in .txt file.
 
 ## Packages classes  
 **project**:  
