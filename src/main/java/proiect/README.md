@@ -24,11 +24,11 @@ I also added an admin to simulate the CRUD activity of four components, it does 
 -Storage   
 -PowerSupply   
 
-**components - part 2**:
--ConnectionProvider
--repository classes (repositories for 4 components)
--service classes (services for 4 components and an Audit class for audit)
--Admin class - for interacting with CRUD actions
+**components - part 2**:  
+-ConnectionProvider  
+-repository classes (repositories for 4 components)  
+-service classes (services for 4 components and an Audit class for audit)  
+-Admin class - for interacting with CRUD actions  
 
 ## Actions   
 ### Part 1
