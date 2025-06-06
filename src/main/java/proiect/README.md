@@ -48,7 +48,7 @@ I also added an admin to simulate the CRUD activity of four components, it does 
 -addComponent(Component component) - use inside the code to easily add components  
 -addComputer(Computer computer)  - use inside the code to easily add computers  
 -selectComponent(String type) - prompts the user to select a type of component from a list  
--buildPc() - helps the user build the pc and verify the components compatibility, gives suggestions and rates said pc at the  
+-buildPc() - helps the user build the pc and verify the components compatibility, gives suggestions and rates said pc   
 -recommendPc(String performance) - recommends a list( that is sorted from cheapest to expensive) of computers depending on the performance that the user is searching  
 -selectPc() -  list all the computers in the memory and prompts the user to select his choice  
 -getComponentListOf(String type) -  gets a list of components depending on what type is selected  
