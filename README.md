@@ -1,2 +1,1 @@
-# OOP_2
-ceva3
+# Object Oriented Programing 2 (Java) Laboratory and Project
